@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Login</title>
+    <script>
+      let visibleItemCount = 0;
+      let currentPrdList = [];
+
+      // fetch data from product.json
+      async function fetchData() {
+        try {
+          return await fetch("product.json");
+        } catch (error) {
+          console.log(error);
+          return [];
+        }
+      }
+
+      // apply filter (category, search, sort)
+      async function applyFilter() {
+        let prdList = await fetchData();
+        prdList = applyCategory(prdList);
+        prdList = applySearch(prdList);
+        prdList = applySort(prdList);
+        currentPrdList = prdList;
+        printProduct(currentPrdList, true);
+      }
+
+      // apply category filter
+      function applyCategory(prdList) {
+        const selectedCategory = document.querySelector("#cate");
+        const cate = selectedCategory.options[selectedCategory.selectedIndex].value;
+
+        const result = [];
+
+        if (cate === "all" || !prdList) {
+          return prdList;
+        }
+
+        prdList.forEach((item) => {
+          if (item.category === cate) {
+            result.push(item);
+          }
+        });
+        return result;
+      }
+
+      // apply search filter
+      function applySearch(prdList) {
+        const searchKeyword = document.querySelector("#search").value;
+
+        const result = [];
+
+        if (!searchKeyword) {
+          return prdList;
+        }
+
+        prdList.forEach((item) => {
+          if (item.description.search(searchKeyword) >= 0) {
+            result.push(item);
+          }
+        });
+        return result;
+      }
+
+      // apply sort
+      function applySort(prdList) {
+        const selectedSortMethod = document.querySelector("#sort");
+        const direction = selectedSortMethod.options[selectedSortMethod.selectedIndex].value;
+
+        if (direction === "none") {
+          return prdList;
+        }
+
+        // apply ascending sort
+        prdList.sort((a, b) => {
+          const priceA = parseInt(a.price);
+          const priceB = parseInt(b.price);
+
+          if (priceA > priceB) return 1;
+          if (priceA === priceB) return 0;
+          if (priceA < priceB) return -1;
+        });
+
+        // descending sort
+        if (direction === "desc") {
+          prdList.reverse();
+        }
+
+        return prdList;
+      }
+
+      // print product list
+      function printProduct(prdList = [], reset = false) {
+        const productListDiv = document.querySelector(".productList");
+
+        if (reset) {
+          while (productListDiv.firstChild) {
+            productListDiv.firstChild.remove();
+          }
+          visibleItemCount = 0;
+        }
+
+        visibleItemCount += 6;
+
+        if (!prdList) {
+          productListDiv.innerHTML = "검색 결과가 없습니다.";
+          return;
+        }
+
+        prdList.slice(visibleItemCount - 6, visibleItemCount).forEach((item) => {
+          const divItem = document.createElement("div");
+          const divDesc = document.createElement("div");
+          const img = document.createElement("img");
+          const divTitle = document.createElement("div");
+
+          img.src = item.image;
+
+          divItem.classList.add("item");
+
+          divTitle.innerHTML = item.name;
+          divTitle.classList.add("title");
+
+          divDesc.innerText = item.description + "\n" + "$" + item.price;
+          divDesc.classList.add("text");
+
+          divItem.onclick = function (event) {
+            divItem.classList.add("selected");
+            divItem.appendChild(divDesc);
+          };
+
+          divItem.appendChild(img);
+          divItem.appendChild(divTitle);
+
+          productListDiv.appendChild(divItem);
+        });
+      }
+
+      // fetch data on load
+      window.onload = () => {
+        applyFilter();
+      };
+
+      window.onscroll = () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          printProduct(currentPrdList);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>IP SHOP</h1>
+    <div class="navigation">
+      <span>SHOP</span>
+      <a href="login.html">로그인</a>
+      <a href="signup.html">회원가입</a>
+    </div>
+    <div class="shop">
+      <div class="intro">Products</div>
+      <div class="product">
+        <div class="controller">
+          <div class="control">
+            <label for="cate">Choose a category</label>
+            <select name="cate" id="cate">
+              <option value="all" selected>전체</option>
+              <option value="computer">컴퓨터</option>
+              <option value="monitor">모니터</option>
+              <option value="mouse">마우스</option>
+              <option value="speaker">스피커</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="search">Enter search keywords</label>
+            <input type="text" name="search" id="search" placeholder="ex. 무선" />
+          </div>
+          <div class="control">
+            <label for="sort">Choose a sort by price</label>
+            <select name="sort" id="sort">
+              <option value="none" selected>정렬 안함</option>
+              <option value="asc">낮은가격순</option>
+              <option value="desc">높은가격순</option>
+            </select>
+          </div>
+          <button class="filter" onclick="applyFilter()">Apply Filter</button>
+        </div>
+        <div class="productList"></div>
+      </div>
+    </div>
+  </body>
+</html>

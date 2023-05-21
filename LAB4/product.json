@@ -1,0 +1,114 @@
+[
+  {
+    "name": "PC-A 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-1.jpg",
+    "description": "문서 작업용 컴퓨터입니다.",
+    "price": "700"
+  },
+  {
+    "name": "PC-B 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-2.jpg",
+    "description": "영상 작업용 컴퓨터입니다.",
+    "price": "900"
+  },
+  {
+    "name": "PC-C 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-3.jpg",
+    "description": "청소년용 컴퓨터입니다.",
+    "price": "800"
+  },
+  {
+    "name": "PC-D 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-4.jpg",
+    "description": "어린이용 컴퓨터입니다.",
+    "price": "500"
+  },
+  {
+    "name": "PC-E 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-5.jpg",
+    "description": "공학용 컴퓨터입니다.",
+    "price": "1200"
+  },
+  {
+    "name": "PC-F 컴퓨터",
+    "category": "computer",
+    "image": "images/computer-6.jpg",
+    "description": "개발자용 컴퓨터입니다.",
+    "price": "1500"
+  },
+  {
+    "name": "게이밍 모니터",
+    "category": "monitor",
+    "image": "images/monitor-1.jpg",
+    "description": "게이밍 모니터입니다.",
+    "price": "700"
+  },
+  {
+    "name": "영화감상 모니터",
+    "category": "monitor",
+    "image": "images/monitor-2.jpg",
+    "description": "영화 감상용 모니터입니다.",
+    "price": "500"
+  },
+  {
+    "name": "사진 작업 모니터",
+    "category": "monitor",
+    "image": "images/monitor-3.jpg",
+    "description": "사진 작업용 모니터입니다.",
+    "price": "1200"
+  },
+  {
+    "name": "와이드 모니터",
+    "category": "monitor",
+    "image": "images/monitor-4.jpg",
+    "description": "넓은 화면을 가진 모니터입니다.",
+    "price": "300"
+  },
+  {
+    "name": "게이밍 유선 마우스",
+    "category": "mouse",
+    "image": "images/mouse-1.jpg",
+    "description": "게이밍을 즐길 수 있는 마우스입니다.",
+    "price": "40"
+  },
+  {
+    "name": "게이밍 무선 마우스",
+    "category": "mouse",
+    "image": "images/mouse-2.jpg",
+    "description": "무선으로 연결 가능한 게이밍 마우스입니다.",
+    "price": "50"
+  },
+  {
+    "name": "사무용 마우스",
+    "category": "mouse",
+    "image": "images/mouse-3.jpg",
+    "description": "일반 사무용 마우스입니다.",
+    "price": "10"
+  },
+  {
+    "name": "사무용 무선 마우스",
+    "category": "mouse",
+    "image": "images/mouse-4.jpg",
+    "description": "일반 사무용 무선 마우스입니다.",
+    "price": "20"
+  },
+  {
+    "name": "블루투스 스피커",
+    "category": "speaker",
+    "image": "images/speaker-1.jpg",
+    "description": "가성비 좋은 무선 스피커입니다.",
+    "price": "20"
+  },
+  {
+    "name": "스테레오 스피커",
+    "category": "speaker",
+    "image": "images/speaker-2.jpg",
+    "description": "공간 음향을 제공하는 스테레오 스피커입니다.",
+    "price": "80"
+  }
+]
