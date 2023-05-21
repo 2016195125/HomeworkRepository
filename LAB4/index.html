@@ -11,7 +11,8 @@
       // fetch data from product.json
       async function fetchData() {
         try {
-          const result = await fetch("product.json");
+          const resultRaw = await fetch("product.json");
+          const resultJson = resultRaw.json();
           console.log(result)
           return result;
         } catch (error) {
